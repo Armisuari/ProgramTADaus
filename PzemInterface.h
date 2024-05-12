@@ -23,10 +23,10 @@ class PzemInterface {
 public:
   bool begin();
   bool readVoltage(size_t index, PzemData_t &v);
-  // bool readCurrent(size_t index, PzemData_t &i);
+  bool readCurrent(size_t index, PzemData_t &i);
   bool readPower(size_t index, PzemData_t &p);
   bool readEnergy(size_t index, PzemData_t &e);
-  // bool readPF();
+  bool readPF(size_t index, PzemData_t &pf);
 
 private:
   PZEM004Tv30 pzem[CONFIG_PZEM_NUM];
@@ -51,7 +51,20 @@ bool PzemInterface::readPower(size_t index, PzemData_t &p) {
   return true;
 }
 
+bool PzemInterface::readCurrent(size_t index, PzemData_t &i)
+{
+  i.value[2] = pzem[index].current();
+  return true;
+}
+
 bool PzemInterface::readEnergy(size_t index, PzemData_t &e) {
-  e.value[2] = pzem[index].energy();
+  e.value[3] = pzem[index].energy();
+  return true;
+}
+
+
+bool PzemInterface::readPF(size_t index, PzemData_t &pf)
+{
+  pf.value[4] = pzem[index].pf();
   return true;
 }
