@@ -29,22 +29,26 @@
 #define CONFIG_PLC_BAUD         (57600)
 #endif /*CONFIG_PLC_BAUD*/
 
-#ifndef CONFIG_PLC_TX_ENABLE_PIN
-#define CONFIG_PLC_TX_ENABLE_PIN   (2)
-#endif /*CONFIG_PLC_TX_ENABLE_PIN*/
+#ifndef CONFIG_PLC_SERIAL
+#define CONFIG_PLC_SERIAL       (Serial)
+#endif /*CONFIG_PLC_SERIAL*/
 
-#ifndef CONFIG_PLC_TIMEOUT
-#define CONFIG_PLC_TIMEOUT      (1000)
-#endif /*CONFIG_PLC_TIMEOUT*/
+// #ifndef CONFIG_PLC_TX_ENABLE_PIN
+// #define CONFIG_PLC_TX_ENABLE_PIN   (2)
+// #endif /*CONFIG_PLC_TX_ENABLE_PIN*/
 
-#ifndef CONFIG_PLC_POLLING
-#define CONFIG_PLC_POLLING      (500)
-#endif /*CONFIG_PLC_POLLING*/
+// #ifndef CONFIG_PLC_TIMEOUT
+// #define CONFIG_PLC_TIMEOUT      (1000)
+// #endif /*CONFIG_PLC_TIMEOUT*/
 
-#ifndef CONFIG_PLC_RETRY
-#define CONFIG_PLC_RETRY        (10)
-#endif /*CONFIG_PLC_RETRY*/
+// #ifndef CONFIG_PLC_POLLING
+// #define CONFIG_PLC_POLLING      (500)
+// #endif /*CONFIG_PLC_POLLING*/
 
-#ifndef CONFIG_PLC_TOTAL_REG
-#define CONFIG_PLC_TOTAL_REG    (7)
-#endif /*CONFIG_PLC_TOTAL_REG*/
+// #ifndef CONFIG_PLC_RETRY
+// #define CONFIG_PLC_RETRY        (10)
+// #endif /*CONFIG_PLC_RETRY*/
+
+// #ifndef CONFIG_PLC_TOTAL_REG
+// #define CONFIG_PLC_TOTAL_REG    (7)
+// #endif /*CONFIG_PLC_TOTAL_REG*/
