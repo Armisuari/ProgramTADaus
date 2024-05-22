@@ -15,7 +15,7 @@
 
 typedef struct
 {
-  float value[5]; // Array to store voltage, power, current, energy, and PF
+  float value[5];  // Array to store voltage, power, current, energy, and PF
 } PzemData_t;
 
 
@@ -27,6 +27,7 @@ public:
   bool readPower(size_t index, PzemData_t &p);
   bool readEnergy(size_t index, PzemData_t &e);
   bool readPF(size_t index, PzemData_t &pf);
+  bool reset(size_t index);
 
 private:
   PZEM004Tv30 pzem[CONFIG_PZEM_NUM];
@@ -35,7 +36,16 @@ private:
 
 bool PzemInterface::begin() {
   for (size_t i = 0; i < CONFIG_PZEM_NUM; ++i) {
-    pzem[i] = PZEM004Tv30(CONFIG_PZEM_SERIAL, CONFIG_PZEM_RX_PIN, CONFIG_PZEM_TX_PIN, 1 + i);
+    pzem[i] = PZEM004Tv30(CONFIG_PZEM_SERIAL, CONFIG_PZEM_RX_PIN, CONFIG_PZEM_TX_PIN, 0x01 + i);
+  }
+
+  return true;
+}
+
+bool PzemInterface::reset(size_t index) {
+  if (!pzem[index].resetEnergy()) {
+    // Serial.println("[PzemInterface] reset energy failed");
+    return false;
   }
 
   return true;
@@ -48,11 +58,11 @@ bool PzemInterface::readVoltage(size_t index, PzemData_t &v) {
 
 bool PzemInterface::readPower(size_t index, PzemData_t &p) {
   p.value[1] = pzem[index].power();
+  // float power = pzem[1].power();
   return true;
 }
 
-bool PzemInterface::readCurrent(size_t index, PzemData_t &i)
-{
+bool PzemInterface::readCurrent(size_t index, PzemData_t &i) {
   i.value[2] = pzem[index].current();
   return true;
 }
@@ -63,8 +73,7 @@ bool PzemInterface::readEnergy(size_t index, PzemData_t &e) {
 }
 
 
-bool PzemInterface::readPF(size_t index, PzemData_t &pf)
-{
+bool PzemInterface::readPF(size_t index, PzemData_t &pf) {
   pf.value[4] = pzem[index].pf();
   return true;
 }
