@@ -3,7 +3,7 @@
 //// PZEM config
 
 #ifndef CONFIG_PZEM_NUM
-#define CONFIG_PZEM_NUM     (1)
+#define CONFIG_PZEM_NUM     (2)
 #endif /*CONFIG_PZEM_NUM*/
 
 #ifndef CONFIG_PZEM_SERIAL
