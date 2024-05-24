@@ -49,8 +49,12 @@ bool Application::init() {
   saldoToken[0] = 20;
   saldoToken[1] = 20;
 
+  limitToken[0] = 10;
+  limitToken[1] = 10;
+
   for (int i = 0; i < 2; ++i) {
     saldoKwh[i] = float(saldoToken[i]) / 1444.0 * 1000;
+    limitKwh[i] = float(limitToken[i]) / 1444.0 * 30;
     // Serial.printf("[Application] saldoKwh = %.2f\n", saldoKwh[i]);
     _disp[i].setSaldoValue(saldoKwh[i]);
   }
